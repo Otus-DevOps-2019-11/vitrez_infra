@@ -1,7 +1,8 @@
 # vitrez_infra
 vitrez Infra repository
 
-bastion_IP = 35.228.219.101, someinternalhost_IP = 10.166.0.3
+bastion_IP = 35.228.219.101
+someinternalhost_IP = 10.166.0.3
 
 # Самостоятельное задание.
 # Подключение к someinternalhost одной командой:
