@@ -1,6 +1,20 @@
 # vitrez_infra
 vitrez Infra repository
 
+###### cloud-testapp ##########################################
+
+testapp_IP = 35.228.199.13
+testapp_port = 9292
+
+# Как создать инстансы, используя startup.sh:
+gcloud compute instances create reddit-app --boot-disk-size=10GB --image-family ubuntu-1604-lts --image-project=ubuntu-os-cloud --machine-type=g1-small --tags puma-server --restart-on-failure --metadata startup-script=startup.sh
+
+# Как создать правило firewall используя gcloud:
+gcloud compute firewall-rules create default-puma-server --allow tcp:9292 --target-tags=puma-server
+
+
+###### cloud-bastion ############################################
+
 bastion_IP = 35.228.219.101
 someinternalhost_IP = 10.166.0.3
 
