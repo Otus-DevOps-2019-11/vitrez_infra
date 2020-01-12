@@ -1,0 +1,7 @@
+{
+	"id": "infra-264219",
+	"type": "g1-small",
+	"tag_net": "puma-server",
+	"description": "reddit-full image created RV",
+	"image": "reddit-base"
+}
