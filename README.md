@@ -1,6 +1,20 @@
 # vitrez_infra
 vitrez Infra repository
 
+###### packer-base ############################################
+
+Что было сделано:
+
+- установлен ADC для GCP на локальной машине;
+- подготовлен шаблон Packer и скрипты, создающие pre-backed образ 'reddit-base' на базе образа Ubuntu и установленных Ruby и MongoDB;
+- предыдущий шаблон Packer был изменен, используя параметризацию и пользовательские переменные;
+- подготовлен шаблон Packer и скрипты, создающие pre-backed образ 'reddit-full' на базе образа 'reddit-base' с развернутым приложением Puma, готовым к работе сразу после создания VM из образа.
+
+Как создать инстанс GCP, используя образ 'reddit-full':
+
+sudo gcloud compute instances create reddit-app --boot-disk-size=10GB --image-family reddit-full --machine-type=g1-small --tags puma-server --restart-on-failure
+
+
 ###### cloud-testapp ##########################################
 
 testapp_IP = 35.228.199.13
