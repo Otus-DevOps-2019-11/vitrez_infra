@@ -1,6 +1,19 @@
 # vitrez_infra
 vitrez Infra repository
 
+###### terraform-1 ############################################
+
+Что было сделано:
+
+- Создана новая ветка terraform-1;
+- Создан main.tf - главный конфигурационный файл, содержащий декларативное описание нашей инфраструктуры;
+- Создан outputs.tf - файл, содержащий описание переменных, выгружаемые Terraform после выполнения задания;
+- Создан variables.tf - файл, содержащий описание входных переменных, используемых в главном конфигурационном файле;
+- Создан terraform.tfvars - файл, содержашщий значения переменных из variables.tf;
+- Выполнено самостоятельное задание с объявлением переменных и создан terraform.tfvars.example;
+- Выполнено задание с *, где необходимо добавить ssh ключи в метаданные проекта для пользователей appuser1, appuser2, appuser2;
+- Добавленный вручную через web-интерфейс ключ appuser_web, после выполнения terraform apply - удаляется.
+
 ###### packer-base ############################################
 
 Что было сделано:
@@ -20,10 +33,10 @@ sudo gcloud compute instances create reddit-app --boot-disk-size=10GB --image-fa
 testapp_IP = 35.228.199.13
 testapp_port = 9292
 
-# Как создать инстансы, используя startup.sh:
+Как создать инстансы, используя startup.sh:
 gcloud compute instances create reddit-app --boot-disk-size=10GB --image-family ubuntu-1604-lts --image-project=ubuntu-os-cloud --machine-type=g1-small --tags puma-server --restart-on-failure --metadata startup-script=startup.sh
 
-# Как создать правило firewall используя gcloud:
+Как создать правило firewall используя gcloud:
 gcloud compute firewall-rules create default-puma-server --allow tcp:9292 --target-tags=puma-server
 
 
@@ -33,7 +46,7 @@ bastion_IP = 35.228.219.101
 someinternalhost_IP = 10.166.0.3
 
 # Самостоятельное задание.
-# Подключение к someinternalhost одной командой:
+#Подключение к someinternalhost одной командой:
 ssh -i ~/.ssh/appuser -A appuser@35.228.219.101 -t ssh 10.166.0.3
 
 # или после использования ssh-add так:
@@ -46,5 +59,6 @@ Host    someinternalhost
         User appuser
         ForwardAgent yes
         ProxyCommand ssh appuser@35.228.219.101 -W %h:%p
+
 # Теперь возможно подключаться к хосту так:
 ssh someinternalhost
