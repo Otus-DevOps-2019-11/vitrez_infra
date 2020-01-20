@@ -18,13 +18,14 @@ resource "google_compute_project_metadata_item" "app" {
 }
 
 module "app" {
-  source = "./modules/app"
+  source = "../modules/app"
 }
 
 module "db" {
-  source = "./modules/db"
+  source = "../modules/db"
 }
 
 module "vpc" {
-  source = "./modules/vpc"
+  source        = "../modules/vpc"
+  source_ranges = ["91.193.179.193/32"]
 }
