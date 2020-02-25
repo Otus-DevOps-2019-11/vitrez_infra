@@ -2,29 +2,33 @@
 - name: Install MongoDB
   hosts: all
   become: true
-  tasks:
-  - name: Key of repo add
-    apt_key:
-      id: D68FA50FEA312927
-      keyserver: keyserver.ubuntu.com
-      state: present
 
-  - name: Repo add
-    apt_repository:
-      repo: deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse
-      state: present
-      filename: mongodb-org-3.2
+  roles:
+    - db
 
-  - name: Install mongodb-org
-    apt:
-      name: mongodb-org
-      state: present
-      update_cache: yes
-
-  - name: Enable mongod
-    systemd: name=mongod enabled=yes
-    notify: restart mongod
-
-  handlers:
-  - name: restart mongod
-    service: name=mongod state=restarted
+#  tasks:
+#  - name: Key of repo add
+#    apt_key:
+#      id: D68FA50FEA312927
+#      keyserver: keyserver.ubuntu.com
+#      state: present
+#
+#  - name: Repo add
+#    apt_repository:
+#      repo: deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse
+#      state: present
+#      filename: mongodb-org-3.2
+#
+#  - name: Install mongodb-org
+#    apt:
+#      name: mongodb-org
+#      state: present
+#      update_cache: yes
+#
+#  - name: Enable mongod
+#    systemd: name=mongod enabled=yes
+#    notify: restart mongod
+#
+#  handlers:
+#  - name: restart mongod
+#    service: name=mongod state=restarted
